@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livros</title>
+</head>
+<body>
+    <main class="register-container">
+        <form th:action="@{/livro}" method="POST">
+            <div>
+                <input type="text" name="nome"
+                    placeholder="Nome"
+                />
+
+                <input type="text" name="edicao"
+                    placeholder="Edicao"
+                />
+
+                <input type="number" name="qtdPag"
+                    placeholder="Quantidade de Pág."
+                />
+
+                <input type="text" name="categoria"
+                    placeholder="Categoria"
+                />
+            </div>
+            <button type="submit"> Cadastrar </button>
+        </form>
+    </main>
+
+    <aside class="tableContainer">
+        <table width="625px">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Edicao</th>
+                    <th>Quantidade de Pág.</th>
+                    <th>Categoria</th>
+                </tr>
+            </thead>
+                <tr th:each="livros:${livros}">
+                    <td th:text="${livros?.id}"/>
+                    <td th:text="${livros?.nome}"/>
+                    <td th:text="${livros?.edicao}"/>
+                    <td th:text="${livros?.qtdPag}"/>
+                    <td th:text="${livros?.categoria}"/>
+                </tr>
+        </table>
+    </aside>
+</body>
+</html>

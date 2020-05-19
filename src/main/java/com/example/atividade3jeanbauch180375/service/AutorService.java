@@ -6,7 +6,9 @@ import com.example.atividade3jeanbauch180375.entity.Autor;
 import com.example.atividade3jeanbauch180375.repository.AutorRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AutorService {
     
     @Autowired
@@ -22,8 +24,13 @@ public class AutorService {
         return rp.findById(id).get();
     }
 
-    public void postarAutor(Autor a)
+    public boolean postarAutor(Autor a)
     {
-        rp.save(a);
+        if(a.getIdade()>0)
+        {
+            rp.save(a);
+            return true;
+        }
+        return false;
     }
 }

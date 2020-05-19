@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autores</title>
+</head>
+<body>
+    <main class="register-container">
+        <form th:action="@{/autor}" method="POST">
+            <div>
+                <input type="text" name="nome"
+                    placeholder="Nome"
+                />
+
+                <input type="number" name="idade"
+                    placeholder="Idade"
+                />
+
+                <input type="text" name="nacionalidade"
+                    placeholder="Nacionalidade"
+                />
+
+                <input type="text" name="ocupacao"
+                    placeholder="Ocupacao"
+                />
+            </div>
+            <button type="submit"> Cadastrar </button>
+        </form>
+    </main>
+
+    <aside class="tableContainer">
+        <table width="625px">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                    <th>Nacionalidade</th>
+                    <th>Ocupacao</th>
+                </tr>
+            </thead>
+                <tr th:each="autores:${autores}">
+                    <td th:text="${autores?.id}"/>
+                    <td th:text="${autores?.nome}"/>
+                    <td th:text="${autores?.idade}"/>
+                    <td th:text="${autores?.nacionalidade}"/>
+                    <td th:text="${autores?.ocupacao}"/>
+                </tr>
+        </table>
+    </aside>
+</body>
+</html>

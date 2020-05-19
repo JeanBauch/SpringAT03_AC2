@@ -6,7 +6,9 @@ import com.example.atividade3jeanbauch180375.entity.Livro;
 import com.example.atividade3jeanbauch180375.repository.LivroRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class LivroService {
 
     @Autowired
@@ -22,9 +24,14 @@ public class LivroService {
         return rp.findById(id).get();
     }
 
-    public void postarLivro(Livro l)
+    public boolean postarLivro(Livro l)
     {
-        rp.save(l);
+        if(l.getQtdPag()>0)
+        {
+            rp.save(l);
+            return true;
+        }
+        return false;
     }
     
 }

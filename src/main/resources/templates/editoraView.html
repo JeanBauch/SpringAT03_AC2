@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editora</title>
+</head>
+<body>
+    <main class="register-container">
+        <form th:action="@{/editora}" method="POST">
+            <div>
+                <input type="text" name="nome"
+                    placeholder="Nome"
+                />
+
+                <input type="text" name="endereco"
+                    placeholder="Endereco"
+                />
+
+                <input type="text" name="tel"
+                    placeholder="Telefone"
+                />
+
+                <input type="text" name="dataCriacao"
+                    placeholder="Data de Criacao"
+                />
+            </div>
+            <button type="submit"> Cadastrar </button>
+        </form>
+    </main>
+
+    <aside class="tableContainer">
+        <table width="625px">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Endereco</th>
+                    <th>Telefone</th>
+                    <th>Data de Criacao</th>
+                </tr>
+            </thead>
+                <tr th:each="editoras:${editoras}">
+                    <td th:text="${editoras?.id}"/>
+                    <td th:text="${editoras?.nome}"/>
+                    <td th:text="${editoras?.endereco}"/>
+                    <td th:text="${editoras?.tel}"/>
+                    <td th:text="${editoras?.dataCriacao}"/>
+                </tr>
+        </table>
+    </aside>
+</body>
+</html>
