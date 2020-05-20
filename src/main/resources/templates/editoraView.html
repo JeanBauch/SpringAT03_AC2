@@ -46,6 +46,7 @@
                     <td th:text="${editoras?.endereco}"/>
                     <td th:text="${editoras?.tel}"/>
                     <td th:text="${editoras?.dataCriacao}"/>
+                    <td><a th:href="@{'/editora/' + ${editoras?.id} }">Detalhes</a></td>
                 </tr>
         </table>
     </aside>

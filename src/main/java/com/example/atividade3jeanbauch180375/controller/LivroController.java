@@ -25,7 +25,7 @@ public class LivroController {
     LivroService livroService;
 
     @Autowired
-    EditoraController editoraController;
+    EditoraService editoraService;
 
     @Autowired
     AutorService autorService;
@@ -37,7 +37,7 @@ public class LivroController {
         List<Livro> livros = livroService.getAll();
         mv.addObject("livro", new Livro());
         mv.addObject("autores", autorService.getAll());
-        mv.addObject("editoras", editoraController.getAll());
+        mv.addObject("editoras", editoraService.getAll());
         mv.addObject("livros", livros);
         return mv;
     }

@@ -23,7 +23,7 @@ public class Editora implements Serializable {
     private String dataCriacao;
 
     @OneToMany
-    @JoinColumn(name="editoralivro")
+    @JoinColumn(name="EditoraLivro")
     private List<Livro> livros;
 
     public int getId() {

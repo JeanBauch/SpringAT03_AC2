@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.UniqueConstraint;
+
 
 @Entity
 public class Livro implements Serializable{
@@ -25,12 +28,24 @@ public class Livro implements Serializable{
     @ManyToMany
     @JoinTable(
         name="AutorLivro",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"LivroID","AutorID"}),
         joinColumns = @JoinColumn(
-            name= "LivroID",
+            name="LivroID",
             referencedColumnName = "id"
+        ),
+        inverseJoinColumns = @JoinColumn(
+            name="AutorID",
+            referencedColumnName = "id"
+            
         )
     )
     private List<Autor> autores;
+
+    @ManyToOne
+    @JoinColumn(
+        name="EditoraLivro"
+    )
+    private Editora editora;
 
     public int getId() {
         return id;
@@ -84,5 +99,13 @@ public class Livro implements Serializable{
     public String toString() {
         return "Livro [categoria=" + categoria + ", edicao=" + edicao + ", id=" + id + ", nome=" + nome + ", qtdPag="
                 + qtdPag + "]";
+    }
+
+    public Editora getEditora() {
+        return editora;
+    }
+
+    public void setEditora(Editora editora) {
+        this.editora = editora;
     }
 }

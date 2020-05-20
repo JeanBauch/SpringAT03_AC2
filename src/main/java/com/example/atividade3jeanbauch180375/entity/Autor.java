@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.UniqueConstraint;
 
 @Entity
 public class Autor implements Serializable {
@@ -25,12 +26,16 @@ public class Autor implements Serializable {
     @ManyToMany
     @JoinTable(
         name="AutorLivro",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"LivroID","AutorID"}),
         joinColumns = @JoinColumn(
             name="AutorID",
             referencedColumnName = "id"
+        ),
+        inverseJoinColumns = @JoinColumn(
+            name="LivroID",
+            referencedColumnName = "id"
         )
     )
-
     private List<Livro> livros;
 
     public int getId() {

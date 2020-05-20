@@ -10,19 +10,19 @@
         <form th:action="@{/autor}" method="POST">
             <div>
                 <input type="text" name="nome"
-                    placeholder="Nome"
+                    placeholder="Nome" required
                 />
 
                 <input type="number" name="idade"
-                    placeholder="Idade"
+                    placeholder="Idade" required
                 />
 
                 <input type="text" name="nacionalidade"
-                    placeholder="Nacionalidade"
+                    placeholder="Nacionalidade" required
                 />
 
                 <input type="text" name="ocupacao"
-                    placeholder="Ocupacao"
+                    placeholder="Ocupacao" required
                 />
             </div>
             <button type="submit"> Cadastrar </button>
@@ -46,6 +46,7 @@
                     <td th:text="${autores?.idade}"/>
                     <td th:text="${autores?.nacionalidade}"/>
                     <td th:text="${autores?.ocupacao}"/>
+                    <td><a th:href="@{'/autor/' + ${autores?.id} }">Detalhes</a></td>
                 </tr>
         </table>
     </aside>

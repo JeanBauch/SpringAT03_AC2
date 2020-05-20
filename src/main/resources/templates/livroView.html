@@ -7,7 +7,7 @@
 </head>
 <body>
     <main class="register-container">
-        <form th:action="@{/livro}" method="POST">
+        <form th:object="${livro}" th:action="@{/livro}" method="POST">
             <div>
                 <input type="text" name="nome"
                     placeholder="Nome"
@@ -24,6 +24,14 @@
                 <input type="text" name="categoria"
                     placeholder="Categoria"
                 />
+
+                <select th:field="${livro.editora}" required>
+                    <option value="">Escolha a editora</option>
+                    <option th:each="e:${editoras}"
+                                th:value="${e.id}"
+                                th:text="${e.nome}">
+                    </option>
+                </select>
             </div>
             <button type="submit"> Cadastrar </button>
         </form>
