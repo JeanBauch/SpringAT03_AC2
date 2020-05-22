@@ -4,17 +4,177 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background: linear-gradient(180deg, #A92E9D 0%, rgba(209, 209, 209, 0) 100%), #400072;
+        }
+
+        header {
+            background: rgb(72, 0, 75);
+            grid-area: h;
+        }
+
+        main {
+            grid-area: m;
+        }
+
+        aside {
+            grid-area: a;
+        }
+
+        footer {
+            grid-area: f;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns:2fr 2fr 2fr;
+            grid-template-rows: 8vh 80vh 11vh;
+            grid-gap:5px;
+            grid-template-areas:"h h h"
+                                "m m m"
+                                "f f f"
+        }
+
+        .title {
+            display: grid;
+            grid-template-columns: 2fr 2fr 2fr;
+            justify-items: center;
+        }
+
+        .register-container {
+            display: grid;
+            grid-template-columns: 2fr 2fr 2fr;
+            grid-template-rows: 2fr 2fr 2fr;
+            justify-content: center;
+        }
+
+        .tableContainer {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            grid-template-rows: 1fr 2fr 1fr;
+            justify-content: center;
+        }
+
+        .dados {
+            grid-column: 2/3;
+            grid-row: 2/3;
+        }
+
+        h1 {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #f1f1f1;
+            grid-column: 2/3;
+            grid-row: 2/3;
+        }
+
+        h2 {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #f1f1f1;
+        }
+
+        h3 {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #000000; 
+        }
+
+        span {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: large;
+            color: black;
+            
+        } 
+
+        b {
+            font-family: Arial, Helvetica, sans-serif;
+            color: black;
+            justify-content: center;
+        }
+
+        a {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #f1f1f1;
+            justify-content: center;
+        }
+
+        .sidebar {
+            height: 100%; 
+            width: 0; 
+            position: fixed; 
+            z-index: 1; 
+            top: 0;
+            left: 0;
+            background-color: #111; 
+            overflow-x: hidden; 
+            padding-top: 60px; 
+            transition: 0.5s;
+        }
+
+        .sidebar a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: #f1f1f1;
+        }
+
+        .sidebar .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        .openbtn {
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #111;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+        }
+
+        .openbtn:hover {
+            background-color: #444;
+        }
+
+        #main {
+            transition: margin-left .5s; 
+            padding: 20px;
+        }
+
+        @media screen and (max-height: 450px) {
+            .sidebar {padding-top: 15px;}
+            .sidebar a {font-size: 18px;}
+        }
+    </style>
 </head>
 <body>
-    
-    <div class="menu">
-        <h1>Atividade AC2 - Jean Augusto Bauch</h1>
-        <h2>Menu</h2>
-        <div>
-            <a href="/autor">Autores</a>
-            <a href="/livro">Livros</a>
-            <a href="/editora">Editoras</a>
-        </div>
+    <div class="container">
+        <header>
+            <div class="title">
+                <h1>Menu</h1>
+            </div>
+        </header>
+
+        <main class="register-container">
+            <h2><a href="/autor">Autores</a></h2>
+            <h2><a href="/livro">Livros</a></h2>
+            <h2><a href="/editora">Editoras</a></h2>
+        </main>
+        
+        <footer>
+            <h1>Atividade AC2 - Jean Augusto Bauch</h1>
+        </footer>
     </div>
 </body>
 </html>

@@ -41,7 +41,7 @@
         </main>
 
         <aside class="tableContainer">
-            <table width="625px">
+            <table width="750px">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -58,6 +58,7 @@
                         <td th:text="${autores?.nacionalidade}"/>
                         <td th:text="${autores?.ocupacao}"/>
                         <td><a th:href="@{'/autor/' + ${autores?.id} }">Detalhes</a></td>
+                        <td><a th:href="@{'/autor/delete/'+${autores.id}}">Excluir</a></td>
                     </tr>
             </table>
         </aside>

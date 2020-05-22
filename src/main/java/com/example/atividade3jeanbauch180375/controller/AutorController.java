@@ -59,6 +59,13 @@ public class AutorController {
         return mv;
     }
 
+    @GetMapping("/autor/delete/{id}")
+    public String deleteEditora(@PathVariable int id) {
+        Autor a = serviceAutor.getByID(id);
+        serviceAutor.delete(a);
+        return "redirect:/autor";
+    }
+
     @PostMapping("/autor/associar")
     public String associarAutor(@ModelAttribute Livro livro, @RequestParam Integer idAutor) {
         Autor autor = serviceAutor.getByID(idAutor);

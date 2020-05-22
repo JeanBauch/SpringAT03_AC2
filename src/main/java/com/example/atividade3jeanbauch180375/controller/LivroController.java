@@ -61,6 +61,13 @@ public class LivroController {
         return mv;
     }
 
+    @GetMapping("/livro/delete/{id}")
+    public String deleteLivro(@PathVariable int id) {
+        Livro l = livroService.getByID(id);
+        livroService.delete(l);
+        return "redirect:/livro";
+    }
+
     @PostMapping("/livro")
     public String registerLivro(@Valid @ModelAttribute Livro livro, RedirectAttributes redirectAttributes)
     {

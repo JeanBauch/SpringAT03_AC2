@@ -24,17 +24,17 @@ footer {
 
 .container {
     display: grid;
-    grid-template-columns: 2fr 2fr;
+    grid-template-columns: 2fr 2fr 2fr;
     grid-template-rows: 8vh 80vh 11vh;
     grid-gap:5px;
-    grid-template-areas:"h h"
-                        "m a"
-                        "f f"
+    grid-template-areas:"h h h"
+                        ". m ."
+                        "f f f"
 }
 
 .title {
     display: grid;
-    grid-template-columns: 2fr 2fr;
+    grid-template-columns: 2fr 2fr 2fr;
     justify-items: center;
 }
 
@@ -62,22 +62,10 @@ h1 {
     color: #f1f1f1;
 }
 
-h2 {
-    font-family: Arial, Helvetica, sans-serif;
-    color: #f1f1f1; 
-}
-
-h3 {
-    font-family: Arial, Helvetica, sans-serif;
-    color: #000000; 
-}
-
 span {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: large;
     color: black;
-    
-} 
+}
 
 b {
     font-family: Arial, Helvetica, sans-serif;
@@ -145,7 +133,7 @@ table {
     grid-row: 2/3;
     border-collapse: collapse;
     border-spacing: 0;
-    width: 750px;
+    width: 625px;
     border: 0px solid #ddd;
     background: black;
     border-radius: 38px;

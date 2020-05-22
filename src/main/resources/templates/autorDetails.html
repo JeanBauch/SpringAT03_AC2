@@ -19,25 +19,24 @@
 
         <main class="register-container">
             <div class="dados">
-                <b>ID do autor: </b> 
-                <span th:text="${autor.id}"></span><br>
+                <h2>ID do autor: </h2> 
+                <h3 th:text="${autor.id}"></h3>
 
-                <b>Nome: </b> 
-                <span th:text="${autor.nome}"></span><br>
+                <h2>Nome: </h2> 
+                <h3 th:text="${autor.nome}"></h3>
 
-                <b>Idade: </b> 
-                <span th:text="${autor.idade}"></span><br>
+                <h2>Idade: </h2> 
+                <h3 th:text="${autor.idade}"></h3>
 
-                <b>Nacionalidade: </b> 
-                <span th:text="${autor.nacionalidade}"></span><br>
+                <h2>Nacionalidade: </h2> 
+                <h3 th:text="${autor.nacionalidade}"></h3>
 
-                <b>Ocupação: </b> 
-                <span th:text="${autor.ocupacao}"></span><br>
-                <br>
-                <td><a th:href="@{'/autor/edit/' + ${autor?.id} }">Editar</a></td><br>
+                <h2>Ocupação: </h2> 
+                <h3 th:text="${autor.ocupacao}"></h3>
+                <td><a th:href="@{'/autor/edit/' + ${autor?.id} }">Editar</a></td>
 
                 <form th:action="@{/autor/associar(idAutor=${autor.id})}" method="POST">
-                    <span>Associar livros: </span>
+                    <h2>Associar livros: </h2>
                     <select name="id" required>
                         <option value="">Escolha o livro</option>
                         <option th:each="livros:${livros}"

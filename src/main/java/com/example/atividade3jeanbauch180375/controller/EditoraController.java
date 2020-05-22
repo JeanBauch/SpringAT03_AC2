@@ -44,6 +44,13 @@ public class EditoraController {
 
     }
 
+    @GetMapping("/editora/delete/{id}")
+    public String deleteEditora(@PathVariable int id) {
+        Editora e = editoraService.getByID(id);
+        editoraService.delete(e);
+        return "redirect:/editora";
+    }
+
     @GetMapping("/editora/edit/{id}")
     public ModelAndView getEditByID(@PathVariable int id) {
         ModelAndView mv = new ModelAndView("editarEditora");

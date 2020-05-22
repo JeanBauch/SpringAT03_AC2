@@ -4,46 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Autor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/stylessEdit.css">
 </head>
 <body>
-    <h2>Editar Autor: <strong th:text="${autor.nome}"></strong></h2>
-    <a href="/">Menu</a>
-    <a href="/autor">Autores</a>
-    <a href="/livro">Livros</a>
-    <br><br>
-    <main class="register-container">
-        <form th:action="@{'/autor/edit/'} + ${autor.id}" method="POST">
-            <div>
-                <input type="hidden" name="id"
-                    placeholder="ID" th:value= "${autor.id}" required
-                />
-                <input type="text" name="nome"
-                    placeholder="Nome" th:value= "${autor.nome}" required
-                />
-
-                <input type="number" name="idade"
-                    placeholder="Idade" th:value= "${autor.idade}" required
-                />
-
-                <input type="text" name="nacionalidade"
-                    placeholder="Nacionalidade" th:value= "${autor.nacionalidade}" required
-                />
-
-                <input type="text" name="ocupacao"
-                    placeholder="Ocupacao" th:value= "${autor.ocupacao}" required
-                />
-                <label>Associar livros: </label>
-                <select th:field="${autor.livros}" required>
-                    <option value="">Escolha o livro</option>
-                    <option th:each="livros:${livros}"
-                                th:value="${livros.id}"
-                                th:text="${livros.nome}">
-                    </option>
-                </select>
+    <div class="container">
+        <header>
+            <div class="title">
+                <h1></h1>
+                <h1>Editar Autor: <strong th:text="${autor.nome}"></strong></h1>
             </div>
-            <button type="submit">Alterar</button>
-        </form>
-    </main>
+        </header>
 
+        <main class="register-container">
+            <form th:action="@{'/autor/edit/'} + ${autor.id}" method="POST">
+                <div>
+                    <input type="hidden" name="id"
+                        placeholder="ID" th:value= "${autor.id}" required
+                    />
+                    <input type="text" name="nome"
+                        placeholder="Nome" th:value= "${autor.nome}" required
+                    />
+
+                    <input type="number" name="idade"
+                        placeholder="Idade" th:value= "${autor.idade}" required
+                    />
+
+                    <input type="text" name="nacionalidade"
+                        placeholder="Nacionalidade" th:value= "${autor.nacionalidade}" required
+                    />
+
+                    <input type="text" name="ocupacao"
+                        placeholder="Ocupacao" th:value= "${autor.ocupacao}" required
+                    />
+                    <h1>Associar livros: </h1>
+                    <select th:field="${autor.livros}" required>
+                        <option value="">Escolha o livro</option>
+                        <option th:each="livros:${livros}"
+                                    th:value="${livros.id}"
+                                    th:text="${livros.nome}">
+                        </option>
+                    </select>
+                </div>
+                <button type="submit">Alterar</button>
+            </form>
+        </main>
+
+        <footer>
+            <div id="mySidebar" class="sidebar">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="/">Menu</a>
+                <a href="/autor">Autor</a>
+                <a href="/livro">Livro</a>
+                <a href="/editora">Editora</a>
+              </div>
+              
+              <div id="main">
+                <button class="openbtn" onclick="openNav()">&#9776; Navegação entre páginas</button>
+              </div>
+    
+            <div class="alert">
+    
+            </div>
+        </footer>
+    </div>
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+        }
+    </script> 
+    
 </body>
 </html>
