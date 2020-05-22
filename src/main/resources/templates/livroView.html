@@ -4,58 +4,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Livros</title>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/styles.css">
 </head>
 <body>
-    <main class="register-container">
-        <form th:object="${livro}" th:action="@{/livro}" method="POST">
-            <div>
-                <input type="text" name="nome"
-                    placeholder="Nome"
-                />
+    <div class="container">
 
-                <input type="text" name="edicao"
-                    placeholder="Edicao"
-                />
-
-                <input type="number" name="qtdPag"
-                    placeholder="Quantidade de Pág."
-                />
-
-                <input type="text" name="categoria"
-                    placeholder="Categoria"
-                />
-
-                <select th:field="${livro.editora}" required>
-                    <option value="">Escolha a editora</option>
-                    <option th:each="e:${editoras}"
-                                th:value="${e.id}"
-                                th:text="${e.nome}">
-                    </option>
-                </select>
+        <header>
+            <div class="title">
+                <h1>Registrar Livros</h1>
+                <h1>Livros</h1>
             </div>
-            <button type="submit"> Cadastrar </button>
-        </form>
-    </main>
+        </header>
 
-    <aside class="tableContainer">
-        <table width="625px">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Edicao</th>
-                    <th>Quantidade de Pág.</th>
-                    <th>Categoria</th>
-                </tr>
-            </thead>
-                <tr th:each="livros:${livros}">
-                    <td th:text="${livros?.id}"/>
-                    <td th:text="${livros?.nome}"/>
-                    <td th:text="${livros?.edicao}"/>
-                    <td th:text="${livros?.qtdPag}"/>
-                    <td th:text="${livros?.categoria}"/>
-                </tr>
-        </table>
-    </aside>
+        <main class="register-container">
+            <form th:object="${livro}" th:action="@{/livro}" method="POST">
+                <div>
+                    <input type="text" name="nome"
+                        placeholder="Nome"
+                    />
+
+                    <input type="text" name="edicao"
+                        placeholder="Edicao"
+                    />
+
+                    <input type="number" name="qtdPag"
+                        placeholder="Quantidade de Pág."
+                    />
+
+                    <input type="text" name="categoria"
+                        placeholder="Categoria"
+                    />
+
+                    <select th:field="${livro.editora}" required>
+                        <option value="">Escolha a editora</option>
+                        <option th:each="e:${editoras}"
+                                    th:value="${e.id}"
+                                    th:text="${e.nome}">
+                        </option>
+                    </select>
+                </div>
+                <button type="submit"> Cadastrar </button>
+            </form>
+        </main>
+
+        <aside class="tableContainer">
+            <table width="625px">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Edicao</th>
+                        <th>Quantidade de Pág.</th>
+                        <th>Categoria</th>
+                    </tr>
+                </thead>
+                    <tr th:each="livros:${livros}">
+                        <td th:text="${livros?.id}"/>
+                        <td th:text="${livros?.nome}"/>
+                        <td th:text="${livros?.edicao}"/>
+                        <td th:text="${livros?.qtdPag}"/>
+                        <td th:text="${livros?.categoria}"/>
+                        <td><a th:href="@{'/livro/' + ${livros?.id} }">Detalhes</a></td>
+                    </tr>
+            </table>
+        </aside>
+
+        <footer>
+            <div id="mySidebar" class="sidebar">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="/">Menu</a>
+                <a href="/autor">Autor</a>
+                <a href="/livro">Livro</a>
+                <a href="/editora">Editora</a>
+              </div>
+              
+              <div id="main">
+                <button class="openbtn" onclick="openNav()">&#9776; Navegação entre páginas</button>
+              </div>
+
+            <div class="alert">
+
+            </div>
+        </footer>
+    </div>
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+            }
+
+            /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+            function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+            }
+    </script>  
 </body>
 </html>

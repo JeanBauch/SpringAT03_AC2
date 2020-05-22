@@ -28,4 +28,12 @@ public class EditoraService {
     {
         rp.save(e);
     }
+
+    public boolean delete(Editora e)
+    {
+        if(e.getLivros().size()>0)
+            return false;
+        rp.delete(e);
+        return true;
+    }
 }

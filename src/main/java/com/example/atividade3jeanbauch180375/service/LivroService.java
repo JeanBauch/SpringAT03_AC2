@@ -34,4 +34,8 @@ public class LivroService {
         return false;
     }
     
+    public void delete(Livro l)
+    {
+        rp.delete(l);
+    }
 }

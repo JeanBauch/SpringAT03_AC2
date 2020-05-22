@@ -4,51 +4,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Autores</title>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/styles.css">
 </head>
 <body>
-    <main class="register-container">
-        <form th:action="@{/autor}" method="POST">
-            <div>
-                <input type="text" name="nome"
-                    placeholder="Nome" required
-                />
-
-                <input type="number" name="idade"
-                    placeholder="Idade" required
-                />
-
-                <input type="text" name="nacionalidade"
-                    placeholder="Nacionalidade" required
-                />
-
-                <input type="text" name="ocupacao"
-                    placeholder="Ocupacao" required
-                />
+    <div class="container">
+        
+        <header>
+            <div class="title">
+                <h1>Registrar Autores</h1>
+                <h1>Autores</h1>
             </div>
-            <button type="submit"> Cadastrar </button>
-        </form>
-    </main>
+        </header>
 
-    <aside class="tableContainer">
-        <table width="625px">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Idade</th>
-                    <th>Nacionalidade</th>
-                    <th>Ocupacao</th>
-                </tr>
-            </thead>
-                <tr th:each="autores:${autores}">
-                    <td th:text="${autores?.id}"/>
-                    <td th:text="${autores?.nome}"/>
-                    <td th:text="${autores?.idade}"/>
-                    <td th:text="${autores?.nacionalidade}"/>
-                    <td th:text="${autores?.ocupacao}"/>
-                    <td><a th:href="@{'/autor/' + ${autores?.id} }">Detalhes</a></td>
-                </tr>
-        </table>
-    </aside>
+        <main class="register-container">
+            <form th:action="@{/autor}" method="POST">
+                <div>
+                    <input type="text" name="nome"
+                        placeholder="Nome" required
+                    />
+
+                    <input type="number" name="idade"
+                        placeholder="Idade" required
+                    />
+
+                    <input type="text" name="nacionalidade"
+                        placeholder="Nacionalidade" required
+                    />
+
+                    <input type="text" name="ocupacao"
+                        placeholder="Ocupacao" required
+                    />
+                </div>
+                <button type="submit"> Cadastrar </button>
+            </form>
+        </main>
+
+        <aside class="tableContainer">
+            <table width="625px">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Idade</th>
+                        <th>Nacionalidade</th>
+                        <th>Ocupação</th>
+                    </tr>
+                </thead>
+                    <tr th:each="autores:${autores}">
+                        <td th:text="${autores?.id}"/>
+                        <td th:text="${autores?.nome}"/>
+                        <td th:text="${autores?.idade}"/>
+                        <td th:text="${autores?.nacionalidade}"/>
+                        <td th:text="${autores?.ocupacao}"/>
+                        <td><a th:href="@{'/autor/' + ${autores?.id} }">Detalhes</a></td>
+                    </tr>
+            </table>
+        </aside>
+
+        <footer>
+            <div id="mySidebar" class="sidebar">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="/">Menu</a>
+                <a href="/autor">Autor</a>
+                <a href="/livro">Livro</a>
+                <a href="/editora">Editora</a>
+              </div>
+              
+              <div id="main">
+                <button class="openbtn" onclick="openNav()">&#9776; Navegação entre páginas</button>
+              </div>
+
+            <div class="alert">
+
+            </div>
+        </footer>
+    </div>
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+            }
+
+            /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+            function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+            }
+    </script>
 </body>
 </html>

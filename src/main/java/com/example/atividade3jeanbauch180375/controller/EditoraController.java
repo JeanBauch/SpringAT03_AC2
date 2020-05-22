@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+//import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
@@ -43,10 +44,27 @@ public class EditoraController {
 
     }
 
+    @GetMapping("/editora/edit/{id}")
+    public ModelAndView getEditByID(@PathVariable int id) {
+        ModelAndView mv = new ModelAndView("editarEditora");
+        Editora editora = editoraService.getByID(id);
+
+        mv.addObject("editora", editora);
+        return mv;
+    }
+
     @PostMapping("/editora")
     public String resgisterLivro(@ModelAttribute Editora editora) {
         editoraService.postarEditora(editora);
         return "redirect:/editora";
     }
     
+    @PostMapping("/editora/edit/{id}")
+    public String editarEditora(@ModelAttribute Editora editora, @PathVariable int id) {
+        Editora editoraa = editoraService.getByID(id);
+        editora.setLivros(editoraa.getLivros());
+
+        editoraService.postarEditora(editora);
+        return "redirect:/editora/edit/"+id;
+    }
 }

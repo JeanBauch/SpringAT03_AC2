@@ -42,6 +42,16 @@ public class LivroController {
         return mv;
     }
 
+    @GetMapping("/livro/edit/{id}")
+    public ModelAndView getEditByID(@PathVariable int id) 
+    {
+        ModelAndView mv = new ModelAndView("editLivro");
+        Livro livro = livroService.getByID(id);
+
+        mv.addObject("livro", livro);
+        return mv;
+    }
+
     @GetMapping("/livro/{id}")
     public ModelAndView getByID(@PathVariable int id)
     {
@@ -58,5 +68,20 @@ public class LivroController {
         if(!resp)
             redirectAttributes.addFlashAttribute("erro","A quantidade de pág. não pode ser negativa, e deve ser maior que 0!");
         return "redirect:/livro";
+    }
+
+    @PostMapping("/livro/edit/{id}")
+    public String editarLivro (@Valid @ModelAttribute Livro livro, @PathVariable int id, RedirectAttributes redirectAttributes) 
+    {
+        Livro livroo = livroService.getByID(id);
+        livro.setAutores(livroo.getAutores());
+        livro.setEdicao(livroo.getEdicao());
+
+        boolean resp = livroService.postarLivro(livro);
+        if(!resp)
+            redirectAttributes.addFlashAttribute("erro", "A quantidade de páginas não pode ser negativo e deve ser maior que 0");
+        else
+            redirectAttributes.addFlashAttribute("sucesso", "Os dados foram alterados com sucesso");
+        return "redirect:/livro/edit/"+id;
     }
 }

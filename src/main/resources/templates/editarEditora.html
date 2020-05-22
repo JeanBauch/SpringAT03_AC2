@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar editoras</title>
+</head>
+<body>
+    <h2>Editar Editora: <strong th:text="${editora.nome}"></strong></h2>
+    <a href="/">Menu</a>
+    <a href="/editora">Editoras</a>
+    <a href="/livro">Livros</a>
+    <br><br>
+    <main class="register-container">
+        <form th:action="@{'/editora/edit/' + ${editora.id}}" method="POST">
+            <div>
+                <input type="hidden" name="id"
+                    placeholder="ID" th:value= "${editora.id}" required
+                />
+
+                <input type="text" name="nome"
+                    placeholder="Nome" th:value="${editora.nome}" required
+                />
+
+                <input type="text" name="endereco"
+                    placeholder="Endereco" th:value="${editora.endereco}" required
+                />
+
+                <input type="text" name="tel"
+                    placeholder="Telefone" th:value="${editora.tel}" required
+                />
+
+                <input type="text" name="dataCriacao"
+                    placeholder="Data de Criacao" th:value="${editora.dataCriacao}" required
+                />
+                
+            </div>
+            <button type="submit"> Alterar </button>
+        </form>
+    </main>
+</body>
+</html>

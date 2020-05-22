@@ -4,8 +4,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalhes do livro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/styles.css">
 </head>
 <body>
-    
+    <div class="container">
+
+        <header>
+            <div class="title">
+                <h1>Detalhes do Livro</h1>
+                <h1>Editora deste livro</h1>
+            </div>
+        </header>
+
+        <main class="register-container">
+            <table widht="625px">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Edição</th>
+                        <th>Qntd Pág.</th>
+                        <th>Categoria</th>
+                    </tr>
+                </thead>
+                <td th:text="${livro.id}"/>
+                <td th:text="${livro.nome}"/>
+                <td th:text="${livro.edicao}"/>
+                <td th:text="${livro.qtdPag}"/>
+                <td th:text="${livro.categoria}"/>
+                <td><a th:href="@{'/livro/edit/' + ${livro?.id} }">Editar</a></td>
+            </table>
+        </main>
+
+        <aside class="tableContainer"> 
+            <table width="625px">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Endereço</th>
+                        <th>Telefone</th>
+                        <th>Data de criação</th>
+                    </tr>
+                </thead>
+                    <tr th:each="ed:${livro.editora}">
+                        <td th:text="${ed?.id}"/>
+                        <td th:text="${ed?.nome}"/>
+                        <td th:text="${ed?.endereco}"/>
+                        <td th:text="${ed?.tel}"/>
+                        <td th:text="${ed?.dataCriacao}"/>
+                    </tr>
+            </table>
+        </aside>
+        
+        <footer>
+            <div id="mySidebar" class="sidebar">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="/">Menu</a>
+                <a href="/autor">Autor</a>
+                <a href="/livro">Livro</a>
+                <a href="/editora">Editora</a>
+              </div>
+              
+              <div id="main">
+                <button class="openbtn" onclick="openNav()">&#9776; Navegação entre páginas</button>
+              </div>
+
+            <div class="alert">
+
+            </div>
+        </footer>
+    </div>
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+            }
+
+            function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+            }
+    </script> 
 </body>
 </html>

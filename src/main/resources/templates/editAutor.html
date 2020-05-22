@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Autor</title>
+</head>
+<body>
+    <h2>Editar Autor: <strong th:text="${autor.nome}"></strong></h2>
+    <a href="/">Menu</a>
+    <a href="/autor">Autores</a>
+    <a href="/livro">Livros</a>
+    <br><br>
+    <main class="register-container">
+        <form th:action="@{'/autor/edit/'} + ${autor.id}" method="POST">
+            <div>
+                <input type="hidden" name="id"
+                    placeholder="ID" th:value= "${autor.id}" required
+                />
+                <input type="text" name="nome"
+                    placeholder="Nome" th:value= "${autor.nome}" required
+                />
+
+                <input type="number" name="idade"
+                    placeholder="Idade" th:value= "${autor.idade}" required
+                />
+
+                <input type="text" name="nacionalidade"
+                    placeholder="Nacionalidade" th:value= "${autor.nacionalidade}" required
+                />
+
+                <input type="text" name="ocupacao"
+                    placeholder="Ocupacao" th:value= "${autor.ocupacao}" required
+                />
+                <label>Associar livros: </label>
+                <select th:field="${autor.livros}" required>
+                    <option value="">Escolha o livro</option>
+                    <option th:each="livros:${livros}"
+                                th:value="${livros.id}"
+                                th:text="${livros.nome}">
+                    </option>
+                </select>
+            </div>
+            <button type="submit">Alterar</button>
+        </form>
+    </main>
+
+</body>
+</html>

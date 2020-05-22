@@ -4,51 +4,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editora</title>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/styles.css">
 </head>
 <body>
-    <main class="register-container">
-        <form th:action="@{/editora}" method="POST">
-            <div>
-                <input type="text" name="nome"
-                    placeholder="Nome"
-                />
+    <div class="container">
 
-                <input type="text" name="endereco"
-                    placeholder="Endereco"
-                />
-
-                <input type="text" name="tel"
-                    placeholder="Telefone"
-                />
-
-                <input type="text" name="dataCriacao"
-                    placeholder="Data de Criacao"
-                />
+        <header>
+            <div class="title">
+                <h1>Registrar Editoras</h1>
+                <h1>Editoras</h1>
             </div>
-            <button type="submit"> Cadastrar </button>
-        </form>
-    </main>
+        </header>
 
-    <aside class="tableContainer">
-        <table width="625px">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Endereco</th>
-                    <th>Telefone</th>
-                    <th>Data de Criacao</th>
-                </tr>
-            </thead>
-                <tr th:each="editoras:${editoras}">
-                    <td th:text="${editoras?.id}"/>
-                    <td th:text="${editoras?.nome}"/>
-                    <td th:text="${editoras?.endereco}"/>
-                    <td th:text="${editoras?.tel}"/>
-                    <td th:text="${editoras?.dataCriacao}"/>
-                    <td><a th:href="@{'/editora/' + ${editoras?.id} }">Detalhes</a></td>
-                </tr>
-        </table>
-    </aside>
+        <main class="register-container">
+            <form th:action="@{/editora}" method="POST">
+                <div>
+                    <input type="text" name="nome"
+                        placeholder="Nome"
+                    />
+
+                    <input type="text" name="endereco"
+                        placeholder="Endereco"
+                    />
+
+                    <input type="text" name="tel"
+                        placeholder="Telefone"
+                    />
+
+                    <input type="text" name="dataCriacao"
+                        placeholder="Data de Criacao"
+                    />
+                </div>
+                <button type="submit"> Cadastrar </button>
+            </form>
+        </main>
+
+        <aside class="tableContainer">
+            <table width="625px">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Endereco</th>
+                        <th>Telefone</th>
+                        <th>Data de Criacao</th>
+                    </tr>
+                </thead>
+                    <tr th:each="editoras:${editoras}">
+                        <td th:text="${editoras?.id}"/>
+                        <td th:text="${editoras?.nome}"/>
+                        <td th:text="${editoras?.endereco}"/>
+                        <td th:text="${editoras?.tel}"/>
+                        <td th:text="${editoras?.dataCriacao}"/>
+                        <td><a th:href="@{'/editora/' + ${editoras?.id} }">Detalhes</a></td>
+                    </tr>
+            </table>
+        </aside>
+
+        <footer>
+            <div id="mySidebar" class="sidebar">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="/">Menu</a>
+                <a href="/autor">Autor</a>
+                <a href="/livro">Livro</a>
+                <a href="/editora">Editora</a>
+              </div>
+              
+              <div id="main">
+                <button class="openbtn" onclick="openNav()">&#9776; Navegação entre páginas</button>
+              </div>
+
+            <div class="alert">
+
+            </div>
+        </footer>
+    </div>
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+            }
+
+            /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+            function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+            }
+    </script>
 </body>
 </html>

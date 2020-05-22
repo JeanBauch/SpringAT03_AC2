@@ -50,6 +50,15 @@ public class AutorController {
         return mv;
     }
 
+    @GetMapping("/autor/edit/{id}")
+    public ModelAndView getEditByID(@PathVariable int id)
+    {
+        ModelAndView mv = new ModelAndView("editAutor");
+        Autor autor = serviceAutor.getByID(id);
+        mv.addObject("autor", autor);
+        return mv;
+    }
+
     @PostMapping("/autor/associar")
     public String associarAutor(@ModelAttribute Livro livro, @RequestParam Integer idAutor) {
         Autor autor = serviceAutor.getByID(idAutor);
@@ -69,4 +78,19 @@ public class AutorController {
         
         return "redirect:/autor";
     }
+
+    @PostMapping("/autor/edit/{id}")
+    public String editarAutor(@Valid @ModelAttribute Autor autor, @PathVariable int id, RedirectAttributes redirectAttributes)
+    {
+        Autor autorr = serviceAutor.getByID(id);
+        autor.setLivros(autorr.getLivros());
+        boolean resp = serviceAutor.postarAutor(autor);
+        if(!resp)   
+            redirectAttributes.addFlashAttribute("erro", "A idade não pode ser negativa e deve ser maior que 0!");
+        else
+            redirectAttributes.addFlashAttribute("sucesso", "Os dados foram alterados com sucesso!");
+    
+        return "redirect:/autor/edit/"+id;
+    }
+
 }

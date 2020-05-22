@@ -33,4 +33,12 @@ public class AutorService {
         }
         return false;
     }
+
+    public boolean delete(Autor a)
+    {
+        if(a.getLivros().size()>0)
+            return false;
+        rp.delete(a);
+        return true;
+    }
 }
