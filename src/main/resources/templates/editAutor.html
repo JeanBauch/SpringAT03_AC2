@@ -37,14 +37,28 @@
                     <input type="text" name="ocupacao"
                         placeholder="Ocupacao" th:value= "${autor.ocupacao}" required
                     />
-                    <h1>Associar livros: </h1>
-                    <select th:field="${autor.livros}" required>
-                        <option value="">Escolha o livro</option>
-                        <option th:each="livros:${livros}"
-                                    th:value="${livros.id}"
-                                    th:text="${livros.nome}">
-                        </option>
-                    </select>
+                    <h1>Livros do Autor: </h1>
+
+                    <table width="750px">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Edicao</th>
+                                <th>Quantidade de Pág.</th>
+                                <th>Categoria</th>
+                            </tr>
+                        </thead>
+                            <tr th:each="livros:${autor.livros}">
+                                <td th:text="${livros?.id}"/>
+                                <td th:text="${livros?.nome}"/>
+                                <td th:text="${livros?.edicao}"/>
+                                <td th:text="${livros?.qtdPag}"/>
+                                <td th:text="${livros?.categoria}"/>
+                                <td><a th:href="@{'/autor/deleteLivro/'+ ${autor.id} + '/' + ${livros.id} }">Excluir</a></td>
+                            </tr>
+                    </table>
+                    
                 </div>
                 <button type="submit">Alterar</button>
             </form>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.example.atividade3jeanbauch180375.entity.Autor;
 import com.example.atividade3jeanbauch180375.entity.Livro;
 import com.example.atividade3jeanbauch180375.service.AutorService;
 import com.example.atividade3jeanbauch180375.service.EditoraService;
@@ -49,7 +50,19 @@ public class LivroController {
         Livro livro = livroService.getByID(id);
 
         mv.addObject("livro", livro);
+        mv.addObject("editoras", editoraService.getAll());
         return mv;
+    }
+
+    @GetMapping("/livro/deleteAutor/{id}/{ida}")
+    public String deleteALivro(@PathVariable int id, @PathVariable int ida) {
+        Livro l = livroService.getByID(id);
+        Autor a = autorService.getByID(ida);
+
+        l.getAutores().remove(a);
+        livroService.postarLivro(l);
+        
+        return "redirect:/livro/edit/" + id;
     }
 
     @GetMapping("/livro/{id}")
@@ -82,13 +95,15 @@ public class LivroController {
     {
         Livro livroo = livroService.getByID(id);
         livro.setAutores(livroo.getAutores());
-        livro.setEdicao(livroo.getEdicao());
+        
 
         boolean resp = livroService.postarLivro(livro);
+
         if(!resp)
             redirectAttributes.addFlashAttribute("erro", "A quantidade de páginas não pode ser negativo e deve ser maior que 0");
         else
             redirectAttributes.addFlashAttribute("sucesso", "Os dados foram alterados com sucesso");
-        return "redirect:/livro/edit/"+id;
+
+        return "redirect:/livro/"+id;
     }
 }

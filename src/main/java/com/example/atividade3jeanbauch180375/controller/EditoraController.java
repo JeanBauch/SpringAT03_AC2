@@ -72,6 +72,6 @@ public class EditoraController {
         editora.setLivros(editoraa.getLivros());
 
         editoraService.postarEditora(editora);
-        return "redirect:/editora/edit/"+id;
+        return "redirect:/editora/"+id; 
     }
 }

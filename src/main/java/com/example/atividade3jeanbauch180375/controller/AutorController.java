@@ -66,6 +66,16 @@ public class AutorController {
         return "redirect:/autor";
     }
 
+    @GetMapping("/autor/deleteLivro/{id}/{idl}")
+    public String deleteALivro(@PathVariable int id, @PathVariable int idl) {
+        Autor a = serviceAutor.getByID(id);
+        Livro l = livroService.getByID(idl);
+
+        a.getLivros().remove(l);
+        serviceAutor.postarAutor(a);
+        return "redirect:/autor/edit/" + id;
+    }
+
     @PostMapping("/autor/associar")
     public String associarAutor(@ModelAttribute Livro livro, @RequestParam Integer idAutor) {
         Autor autor = serviceAutor.getByID(idAutor);
@@ -97,7 +107,7 @@ public class AutorController {
         else
             redirectAttributes.addFlashAttribute("sucesso", "Os dados foram alterados com sucesso!");
     
-        return "redirect:/autor/edit/"+id;
+        return "redirect:/autor/"+id;
     }
 
 }

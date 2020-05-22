@@ -47,6 +47,29 @@
                                     th:text="${e.nome}">
                         </option>
                     </select>
+
+                    <h1>Autor do livro: </h1>
+
+                    <table width="750px">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Edicao</th>
+                                <th>Quantidade de Pág.</th>
+                                <th>Categoria</th>
+                            </tr>
+                        </thead>
+                            <tr th:each="autor:${livro.autores}">
+                                <td th:text="${autor?.id}"/>
+                                <td th:text="${autor?.nome}"/>
+                                <td th:text="${autor?.idade}"/>
+                                <td th:text="${autor?.nacionalidade}"/>
+                                <td th:text="${autor?.ocupacao}"/>
+                                <td><a th:href="@{'/livro/deleteAutor/'+ ${livro.id} + '/' + ${autor.id} }">Excluir</a></td>
+                            </tr>
+                    </table>
+
                 </div>
                 <button type="submit"> Alterar </button>
             </form>
